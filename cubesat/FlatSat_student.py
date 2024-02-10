@@ -98,8 +98,11 @@ def take_photo():
             array = picam2.capture_array("main")
             img = Image.fromarray(array, 'RGB')
             img.save(photo_name)
-            img.show()
-            git_push()
+            
+            #img.show()
+            img.save("C:/Users/User/Desktop/image.jpg")
+
+            #git_push()
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
