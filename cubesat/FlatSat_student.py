@@ -94,7 +94,7 @@ def take_photo():
             capture_config = picam2.create_still_configuration()
             picam2.start(show_preview=True)
             time.sleep(1)
-            array = picam2.switch_mode_and_capture_array(capture_config, "main")
+            array = picam2.switch_mode_and_capture_array(capture_config, photo_name)
             git_push()
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
