@@ -23,8 +23,8 @@ from picamera2 import Picamera2
 
 #VARIABLES
 THRESHOLD = 0      #Any desired value from the accelerometer
-REPO_PATH = "/home/pi/Ad-Astra"     #Your github repo path: ex. /home/pi/FlatSatChallenge
-FOLDER_PATH = "/images"   #Your image folder path in your GitHub repo: ex. /Images
+REPO_PATH = ""     #Your github repo path: ex. /home/pi/FlatSatChallenge
+FOLDER_PATH = ""   #Your image folder path in your GitHub repo: ex. /Images
 
 #imu and camera initialization
 i2c = board.I2C()
@@ -71,9 +71,6 @@ def take_photo():
     """
     while True:
         accelx, accely, accelz = accel_gyro.acceleration
-
-        if accel_gyro > THRESHOLD:
-            __name__       
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
