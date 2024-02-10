@@ -74,11 +74,16 @@ def take_photo():
     #from picamera2 import Picamera2
 
     while True:
+        print("Works")
         accelx, accely, accelz = accel_gyro.acceleration
+        print(accelx, accely, accelz)
         acceleration = accelx ** 2 + accely ** 2 + accelz ** 2
         magnitude = acceleration ** (1/2)
+        
 
         if magnitude > THRESHOLD:
+            
+            
             name = "bangT"
             photo_name = img_gen(name)
             capture_config = picam2.create_still_configuration()
