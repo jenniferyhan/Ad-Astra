@@ -22,7 +22,7 @@ from git import Repo
 from picamera2 import Picamera2
 
 #VARIABLES
-THRESHOLD = 0      #Any desired value from the accelerometer
+THRESHOLD = 1000      #Any desired value from the accelerometer
 REPO_PATH = ""     #Your github repo path: ex. /home/pi/FlatSatChallenge
 FOLDER_PATH = ""   #Your image folder path in your GitHub repo: ex. /Images
 
@@ -69,8 +69,22 @@ def take_photo():
     This function is NOT complete. Takes a photo when the FlatSat is shaken.
     Replace psuedocode with your own code.
     """
+
+    #from picamera2 import Picamera2
+
     while True:
         accelx, accely, accelz = accel_gyro.acceleration
+        acceleration = accelx ** 2 + accely ** 2 + accelz ** 2
+        magnitude = acceleration ** (1/2)
+
+        if magnitude > THRESHOLD:
+            name = "adastraI"
+            photo_name = img_gen(name)
+            capture_config = picam2.create_still_configuration()
+            picam2.start(show_preview=True)
+            time.sleep(1)
+            array = picam2.switch_mode_and_capture_array(capture_config, "main")
+            git_push()
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
