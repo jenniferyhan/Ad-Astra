@@ -93,7 +93,7 @@ def take_photo():
 
             picam2.start()
             time.sleep(1)
-            image = picam2.capture_image(photo_name)
+            image = picam2.capture_image("main")
             print(image)
 
             # picam2.start_preview(Preview.DRM, x=100, y=100, width=640, height=480)
