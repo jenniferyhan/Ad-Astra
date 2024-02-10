@@ -83,10 +83,14 @@ def take_photo():
 
         if magnitude > THRESHOLD:
             print("Works")
-            
-            
+
+            picam2.configure(picam2.create_preview_configuration())
+            min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
+            print(min_exp, max_exp, default_exp)
+
             name = "bangT"
             photo_name = img_gen(name)
+
             capture_config = picam2.create_still_configuration()
             picam2.start(show_preview=True)
             time.sleep(1)
