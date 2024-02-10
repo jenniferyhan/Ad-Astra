@@ -23,8 +23,8 @@ from picamera2 import Picamera2
 
 #VARIABLES
 THRESHOLD = 1000      #Any desired value from the accelerometer
-REPO_PATH = ""     #Your github repo path: ex. /home/pi/FlatSatChallenge
-FOLDER_PATH = ""   #Your image folder path in your GitHub repo: ex. /Images
+REPO_PATH = "/home/pi/Ad-Astra"     #Your github repo path: ex. /home/pi/FlatSatChallenge
+FOLDER_PATH = "/Ad-Astra"  #Your image folder path in your GitHub repo: ex. /Images
 
 #imu and camera initialization
 i2c = board.I2C()
@@ -78,7 +78,7 @@ def take_photo():
         magnitude = acceleration ** (1/2)
 
         if magnitude > THRESHOLD:
-            name = "adastraI"
+            name = "bangT"
             photo_name = img_gen(name)
             capture_config = picam2.create_still_configuration()
             picam2.start(show_preview=True)
