@@ -96,6 +96,8 @@ def take_photo():
             picam2.start()
             time.sleep(1)
             array = picam2.capture_array("main")
+
+            print(array)
             git_push()
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
