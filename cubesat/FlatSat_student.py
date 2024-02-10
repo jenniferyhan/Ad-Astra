@@ -78,11 +78,11 @@ def take_photo():
         accelx, accely, accelz = accel_gyro.acceleration
         acceleration = accelx ** 2 + accely ** 2 + accelz ** 2
         magnitude = acceleration ** (1/2)
+        picam2.configure(picam2.create_preview_configuration())
         
 
         if magnitude > THRESHOLD:
 
-            picam2.configure(picam2.create_preview_configuration())
             min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
 
             name = "bangT"
@@ -94,6 +94,7 @@ def take_photo():
             image.save(photo_name)
 
             git_push()
+            break
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
