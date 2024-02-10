@@ -23,9 +23,9 @@ from git import Repo
 from picamera2 import Picamera2
 
 #VARIABLES
-THRESHOLD = 1000      #Any desired value from the accelerometer
+THRESHOLD = 500      #Any desired value from the accelerometer
 REPO_PATH = "/home/pi/Ad-Astra"     #Your github repo path: ex. /home/pi/FlatSatChallenge
-FOLDER_PATH = "/Ad-Astra"  #Your image folder path in your GitHub repo: ex. /Images
+FOLDER_PATH = "/cubesat"  #Your image folder path in your GitHub repo: ex. /Images
 
 #imu and camera initialization
 i2c = board.I2C()
