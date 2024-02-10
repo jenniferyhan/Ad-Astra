@@ -23,7 +23,7 @@ from git import Repo
 from picamera2 import Picamera2
 
 #VARIABLES
-THRESHOLD = 500      #Any desired value from the accelerometer
+THRESHOLD = 20      #Any desired value from the accelerometer
 REPO_PATH = "/home/pi/Ad-Astra"     #Your github repo path: ex. /home/pi/FlatSatChallenge
 FOLDER_PATH = "/cubesat"  #Your image folder path in your GitHub repo: ex. /Images
 
@@ -74,14 +74,15 @@ def take_photo():
     #from picamera2 import Picamera2
 
     while True:
-        print("Works")
+        # print("Works")
         accelx, accely, accelz = accel_gyro.acceleration
-        print(accelx, accely, accelz)
+        # print(accelx, accely, accelz)
         acceleration = accelx ** 2 + accely ** 2 + accelz ** 2
         magnitude = acceleration ** (1/2)
         
 
         if magnitude > THRESHOLD:
+            print("Works")
             
             
             name = "bangT"
@@ -106,5 +107,5 @@ def main():
 
 
 if __name__ == '__main__':
-    print("Hello World!")
+    # print("Hello World!")
     main()
