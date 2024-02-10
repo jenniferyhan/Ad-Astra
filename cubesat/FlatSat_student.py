@@ -92,28 +92,10 @@ def take_photo():
 
             name = "bangT"
             photo_name = img_gen(name)
-    
 
-            capture_config = picam2.create_still_configuration()
-            picam2.start(show_preview=True)
+            picam2.start()
             time.sleep(1)
-            picam2.switch_mode_and_capture_file(capture_config, photo_name)
-
-            # picam2.start_preview(Preview.DRM, x=100, y=100, width=640, height=480)
-
-            # preview_config = picam2.create_preview_configuration({"size": (640, 360)})
-            # picam2.configure(preview_config)
-
-            # picam2.start()
-            # time.sleep(5)
-
-            # print("Works2")
-
-
-            # capture_config = picam2.create_still_configuration()
-            # picam2.start(show_preview=True)
-            # time.sleep(1)
-            # array = picam2.switch_mode_and_capture_array(capture_config, photo_name)
+            array = picam2.capture_array("main")
             git_push()
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
