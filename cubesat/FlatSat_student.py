@@ -91,6 +91,17 @@ def take_photo():
             name = "bangT"
             photo_name = img_gen(name)
 
+            picam2.start_preview(Preview.DRM, x=100, y=100, width=640, height=480)
+
+            preview_config = picam2.create_preview_configuration({"size": (640, 360)})
+            picam2.configure(preview_config)
+
+            picam2.start()
+            time.sleep(5)
+
+            print("Works2")
+
+
             capture_config = picam2.create_still_configuration()
             picam2.start(show_preview=True)
             time.sleep(1)
