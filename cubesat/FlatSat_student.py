@@ -40,19 +40,19 @@ def git_push():
     """
     This function is complete. Stages, commits, and pushes new images to your GitHub repo.
     """
-    # try:
-    repo = Repo(REPO_PATH)
-    origin = repo.remote('origin')
-    print('added remote')
-    origin.pull()
-    print('pulled changes')
-    repo.git.add(REPO_PATH + FOLDER_PATH)
-    repo.index.commit('New Photo')
-    print('made the commit')
-    origin.push()
-    print('pushed changes')
-    # # except:
-    #     print('Couldn\'t upload to git')
+    try:
+        repo = Repo(REPO_PATH)
+        origin = repo.remote('origin')
+        print('added remote')
+        origin.pull()
+        print('pulled changes')
+        repo.git.add(REPO_PATH + FOLDER_PATH)
+        repo.index.commit('New Photo')
+        print('made the commit')
+        origin.push()
+        print('pushed changes')
+    except:
+        print('Couldn\'t upload to git')
 
 
 def img_gen(name):
@@ -73,37 +73,25 @@ def take_photo():
     Replace psuedocode with your own code.
     """
 
-    #from picamera2 import Picamera2
 
     while True:
-        # print("Works")
         accelx, accely, accelz = accel_gyro.acceleration
-        # print(accelx, accely, accelz)
         acceleration = accelx ** 2 + accely ** 2 + accelz ** 2
         magnitude = acceleration ** (1/2)
         
 
         if magnitude > THRESHOLD:
-            print("Works")
 
             picam2.configure(picam2.create_preview_configuration())
             min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
-            print(min_exp, max_exp, default_exp)
 
             name = "bangT"
             photo_name = img_gen(name)
-
-            # picam2.start()
-            # time.sleep(1)
-            # array = picam2.capture_array("main")
-            # img = Image.fromarray(array, 'RGB')
             
             picam2.start()
             time.sleep(3)
             image = picam2.capture_image("main")
             image.save(photo_name)
-            #img.show()
-            # img.save("C:/Users/User/Desktop/image.jpg")
 
             git_push()
 
