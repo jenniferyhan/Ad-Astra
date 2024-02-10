@@ -93,12 +93,15 @@ def take_photo():
             name = "bangT"
             photo_name = img_gen(name)
 
-            picam2.start()
-            time.sleep(1)
-            array = picam2.capture_array("main")
-            img = Image.fromarray(array, 'RGB')
-            img.save(photo_name)
+            # picam2.start()
+            # time.sleep(1)
+            # array = picam2.capture_array("main")
+            # img = Image.fromarray(array, 'RGB')
             
+            picam2.start()
+            time.sleep(3)
+            image = picam2.capture_image("main")
+            image.save(photo_name)
             #img.show()
             # img.save("C:/Users/User/Desktop/image.jpg")
 
