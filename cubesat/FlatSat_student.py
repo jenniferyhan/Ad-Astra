@@ -100,9 +100,9 @@ def take_photo():
             img.save(photo_name)
             
             #img.show()
-            img.save("C:/Users/User/Desktop/image.jpg")
+            # img.save("C:/Users/User/Desktop/image.jpg")
 
-            #git_push()
+            git_push()
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
