@@ -17,10 +17,12 @@ You will need to complete the take_photo() function and configure the VARIABLES 
 #import libraries
 import time
 import board
+from PIL import Image
 from adafruit_lsm6ds.lsm6dsox import LSM6DSOX as LSM6DS
 from adafruit_lis3mdl import LIS3MDL
 from git import Repo
 from picamera2 import Picamera2, Preview
+
 
 #VARIABLES
 THRESHOLD = 20      #Any desired value from the accelerometer
@@ -95,6 +97,7 @@ def take_photo():
             time.sleep(1)
             image = picam2.capture_image("main")
             print(image)
+            PIL.Image.open()
 
             # picam2.start_preview(Preview.DRM, x=100, y=100, width=640, height=480)
 
