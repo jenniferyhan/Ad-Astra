@@ -90,10 +90,10 @@ def take_photo():
             
             picam2.start()
             time.sleep(3)
-            image = picam2.capture_image("main")
+            image = picam2.capture_array("main")
             image.save(photo_name)
-
-            git_push()
+            print(image)
+            #git_push()
             break
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
