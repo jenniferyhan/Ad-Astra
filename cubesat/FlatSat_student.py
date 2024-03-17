@@ -92,6 +92,8 @@ def take_photo():
             time.sleep(3)
             image = picam2.capture_array("main")
             print(image)
+            len(image)
+            
             #git_push()
             break
 
