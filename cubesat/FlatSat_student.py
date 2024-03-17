@@ -91,11 +91,12 @@ def take_photo():
         picam2.start()
         time.sleep(3)
         image = picam2.capture_array("main")
-        print(image)
-        len(image)
+        print(image.shape)
+        # print(image)
+        # len(image)
 
-        for i in image:
-            print(i)
+        # for i in image:
+        #     print(i)
         #git_push()
         break
 
