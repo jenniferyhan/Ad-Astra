@@ -94,6 +94,8 @@ def take_photo():
         print(image)
         len(image)
 
+        for i in image:
+            print(i)
         #git_push()
         break
 
