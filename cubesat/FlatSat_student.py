@@ -140,14 +140,27 @@ def process_image(image):
                     if temp >= 175:
                         d["Area4"] += 1
     return d
+def detect_difference(before, after):
+    arr = [False] * 4
+    for i in range(len(before)):
+        if abs(before[i] - after[i]) > 10000:
+            arr[i] = True
+
+    return arr
+
 
 def main():
     image_before = take_photo()
     image_after = ""
 
     processed_before = process_image(image_before)
+    processed_after = process_image(image_after)
     print(processed_before)
-    #processed_after = process_image(image_after)
+    print(processed_after)
+    arr_before = processed_before.values()
+    arr_after = processed_after.values()
+
+    print(detect_difference(arr_before, arr_after))
 
 if __name__ == '__main__':
     # print("Hello World!")
