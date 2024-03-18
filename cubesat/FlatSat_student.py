@@ -157,8 +157,8 @@ def main():
     processed_after = process_image(image_after)
     print(processed_before)
     print(processed_after)
-    arr_before = processed_before.values()
-    arr_after = processed_after.values()
+    arr_before = list(processed_before.values())
+    arr_after = list(processed_after.values())
 
     print(detect_difference(arr_before, arr_after))
 
