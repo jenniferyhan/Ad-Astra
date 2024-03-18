@@ -146,6 +146,7 @@ def main():
     image_after = ""
 
     processed_before = process_image(image_before)
+    print(processed_before)
     #processed_after = process_image(image_after)
 
 if __name__ == '__main__':
