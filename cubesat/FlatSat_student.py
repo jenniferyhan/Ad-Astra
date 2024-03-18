@@ -81,7 +81,7 @@ def take_photo():
         
 
         if magnitude > THRESHOLD:
-
+            print("SHAKE")
             picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
             min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
 
@@ -151,7 +151,7 @@ def detect_difference(before, after):
 
 def main():
     image_before = take_photo()
-    image_after = ""
+    image_after = take_photo()
 
     processed_before = process_image(image_before)
     processed_after = process_image(image_after)
