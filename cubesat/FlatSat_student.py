@@ -93,6 +93,7 @@ def take_photo():
 
             image = picam2.capture_array("main")
             print("picture done")
+            picam2.stop()
             return image
             
             
