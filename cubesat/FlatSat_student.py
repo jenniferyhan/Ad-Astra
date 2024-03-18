@@ -125,8 +125,8 @@ def process_image(image):
         for j in range(len(image[0])):
             #area 1
             temp = sum(image[i][j])
-            if i <= 319:
-                if j <= 239:
+            if i <= 239:
+                if j <= 319:
                     #Area1
                     if temp >= 175:
                         d["Area1"] += 1
@@ -135,7 +135,7 @@ def process_image(image):
                     if temp >= 175:
                         d["Area3"] += 1
             else:
-                if j <= 239:
+                if j <= 319:
                     #Area2
                     if temp >= 175:
                         d["Area2"] += 1
