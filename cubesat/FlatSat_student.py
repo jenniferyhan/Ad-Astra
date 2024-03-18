@@ -117,8 +117,8 @@ def process_images(before, after):
     befored["Area4"] = 0
 
 
-    for i in range(len(befored)):
-        for j in range(len(befored[0])):
+    for i in range(len(before)):
+        for j in range(len(before[0])):
             #area 1
             temp = sum(befored[i][j])
             if i <= 239 and j <= 319:
