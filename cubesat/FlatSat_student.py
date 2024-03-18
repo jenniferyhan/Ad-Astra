@@ -80,25 +80,22 @@ def take_photo():
         magnitude = acceleration ** (1/2)
         
 
-        
+        if magnitude > THRESHOLD:
 
-        picam2.configure(picam2.create_preview_configuration())
-        min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
+            picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
+            min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
 
-        name = "bangT"
-        photo_name = img_gen(name)
-        
-        picam2.start()
-        time.sleep(3)
-        image = picam2.capture_array("main")
-        print(image.shape)
-        # print(image)
-        # len(image)
+            name = "bangT"
+            photo_name = img_gen(name)
+            
+            picam2.start()
+            time.sleep(3)
+            image = picam2.capture_array("main")
 
-        # for i in image:
-        #     print(i)
-        #git_push()
-        break
+            print(image)
+
+            # git_push()
+            break
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
