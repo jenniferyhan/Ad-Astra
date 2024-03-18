@@ -147,7 +147,7 @@ def process_image(image):
 def detect_difference(before, after):
     arr = [False] * 4
     for i in range(len(before)):
-        if abs(before[i] - after[i]) > 10000:
+        if abs(before[i] - after[i]) > 15000:
             arr[i] = True
 
     return arr
