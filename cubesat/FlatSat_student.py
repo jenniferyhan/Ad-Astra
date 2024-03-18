@@ -121,18 +121,18 @@ def process_images(before, after):
         for j in range(len(before[0])):
             #area 1
             temp = sum(before[i][j])
-            if i <= 240 and j <= 320:
-                befored["Area1"] += 1
-            #area2
-            elif i > 240 and j <= 320:
-                befored["Area2"] += 1
-            #area3
-            elif i <= 240 and j > 320:
-                befored["Area3"] += 1
-            #area4
+            if i <= 239:
+                if j <= 319:
+                    #Area1
+                    befored["Area1"] += 1
+                else:
+                    #Area3
+                    befored["Area3"] += 1
             else:
-                befored["Area4"] += 1
-
+                if j <= 319:
+                    befored["Area2"] += 1
+                else:
+                    befored["Area4"] += 1
     return befored
 
 def main():
