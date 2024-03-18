@@ -90,12 +90,17 @@ def take_photo():
             
             picam2.start()
             time.sleep(3)
-            image = picam2.capture_array("main")
 
-            print(image)
+            image = picam2.capture_array("main")
+            print("picture done")
+            return image
+            
+            
+            
 
             # git_push()
-            break
+
+        
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
@@ -104,11 +109,37 @@ def take_photo():
             #PUSH PHOTO TO GITHUB
         
         #PAUSE
+def process_images(before, after):
+    befored = dict()
+    befored["Area1"] = 0
+    befored["Area2"] = 0
+    befored["Area3"] = 0
+    befored["Area4"] = 0
 
+
+    for i in range(len(befored)):
+        for j in range(len(befored[0])):
+            #area 1
+            temp = sum(befored[i][j])
+            if i <= 239 and j <= 319:
+                befored["Area1"] += 1
+            #area2
+            elif i > 240 and j <= 319:
+                befored["Area2"] += 1
+            #area3
+            elif i <= 239 and j > 320:
+                befored["Area3"] += 1
+            #area4
+            else:
+                befored["Area4"] += 1
+
+    return befored
 
 def main():
-    take_photo()
+    image_before = take_photo()
+    image_after = ""
 
+    print(process_images(image_before, image_after))
 
 if __name__ == '__main__':
     # print("Hello World!")
