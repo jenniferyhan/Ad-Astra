@@ -109,37 +109,44 @@ def take_photo():
             #PUSH PHOTO TO GITHUB
         
         #PAUSE
-def process_images(before, after):
-    befored = dict()
-    befored["Area1"] = 0
-    befored["Area2"] = 0
-    befored["Area3"] = 0
-    befored["Area4"] = 0
+def process_image(image):
+    d = dict()
+    d["Area1"] = 0
+    d["Area2"] = 0
+    d["Area3"] = 0
+    d["Area4"] = 0
 
-
-    for i in range(len(before)):
-        for j in range(len(before[0])):
+    #White: (256, 256, 256), #black: (0, 0, 0)
+    for i in range(len(image)):
+        for j in range(len(image[0])):
             #area 1
-            temp = sum(before[i][j])
+            temp = sum(image[i][j])
             if i <= 239:
                 if j <= 319:
                     #Area1
-                    befored["Area1"] += 1
+                    if temp >= 175:
+                        d["Area1"] += 1
                 else:
                     #Area3
-                    befored["Area3"] += 1
+                    if temp >= 175:
+                        d["Area3"] += 1
             else:
                 if j <= 319:
-                    befored["Area2"] += 1
+                    #Area2
+                    if temp >= 175:
+                        d["Area2"] += 1
                 else:
-                    befored["Area4"] += 1
-    return befored
+                    #Area4
+                    if temp >= 175:
+                        d["Area4"] += 1
+    return d
 
 def main():
     image_before = take_photo()
     image_after = ""
 
-    print(process_images(image_before, image_after))
+    processed_before = process_image(image_before)
+    #processed_after = process_image(image_after)
 
 if __name__ == '__main__':
     # print("Hello World!")
