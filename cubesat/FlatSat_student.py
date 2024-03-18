@@ -91,15 +91,18 @@ def take_photo():
             picam2.start()
             time.sleep(3)
 
-            image = picam2.capture_array("main")
+            image = picam2.capture_image("main")
+            arr = picam2.capture_array("main")
+            image.save(photo_name)
+            git_push()
             print("picture done")
             picam2.stop()
-            return image
+            return arr
             
             
             
 
-            # git_push()
+            
 
         
 
@@ -161,7 +164,9 @@ def main():
     arr_before = list(processed_before.values())
     arr_after = list(processed_after.values())
 
-    print(detect_difference(arr_before, arr_after))
+    result = detect_difference(arr_before, arr_after)
+    print(result)
+    
 
 if __name__ == '__main__':
     # print("Hello World!")
