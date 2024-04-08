@@ -25,7 +25,7 @@ from picamera2 import Picamera2, Preview
 
 
 #VARIABLES
-THRESHOLD = 5      #Any desired value from the accelerometer
+THRESHOLD = 8      #Any desired value from the accelerometer
 REPO_PATH = "/home/pi/Ad-Astra"     #Your github repo path: ex. /home/pi/FlatSatChallenge
 FOLDER_PATH = "/cubesat"  #Your image folder path in your GitHub repo: ex. /Images
 
@@ -215,7 +215,7 @@ def main():
 
         image_1_black = detect_difference_one(arr_1)
 
-        print("Image 1: " + image_1_black)
+        print(image_1_black)
 
         Stop+=1
         time.sleep(1)
