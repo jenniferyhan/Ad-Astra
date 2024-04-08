@@ -89,7 +89,6 @@ def take_photo():
             photo_name = img_gen(name)
             
             picam2.start()
-            time.sleep(1)
 
             image = picam2.capture_image("main")
             arr = picam2.capture_array("main")
@@ -155,7 +154,7 @@ def detect_difference(before, after):
 def detect_difference_one(Onephoto):
     arr = [False] * 4
     for i in range(len(Onephoto)):
-        if Onephoto[i] > 40000:
+        if Onephoto[i] > 10000:
             arr[i] = True
     return arr
 
@@ -203,7 +202,7 @@ def compare(before, after):
 def main():
     Stop = 0
     while True:
-        if Stop == 2:
+        if Stop == 3:
             break
         image_1 = take_photo()
 
