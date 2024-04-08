@@ -25,7 +25,7 @@ from picamera2 import Picamera2, Preview
 
 
 #VARIABLES
-THRESHOLD = 20      #Any desired value from the accelerometer
+THRESHOLD = 5      #Any desired value from the accelerometer
 REPO_PATH = "/home/pi/Ad-Astra"     #Your github repo path: ex. /home/pi/FlatSatChallenge
 FOLDER_PATH = "/cubesat"  #Your image folder path in your GitHub repo: ex. /Images
 
@@ -85,11 +85,11 @@ def take_photo():
             picam2.configure(picam2.create_preview_configuration({"format": "RGB888"}))
             min_exp, max_exp, default_exp = picam2.camera_controls["AfPause"]
 
-            name = "bangT"
+            name = "Test"
             photo_name = img_gen(name)
             
             picam2.start()
-            time.sleep(3)
+            time.sleep(1)
 
             image = picam2.capture_image("main")
             arr = picam2.capture_array("main")
@@ -142,30 +142,97 @@ def process_image(image):
                 else:
                     #Area4
                     if temp >= 175:
-                        d["Area4"] += 1
+                        d["Area4"] += 1    
     return d
 def detect_difference(before, after):
     arr = [False] * 4
     for i in range(len(before)):
-        if abs(before[i] - after[i]) > 15000:
+        if before[i] - after[i] > 10000:
             arr[i] = True
 
     return arr
 
+def detect_difference_one(Onephoto):
+    arr = [False] * 4
+    for i in range(len(Onephoto)):
+        if Onephoto[i] > 40000:
+            arr[i] = True
+    return arr
+
+
+def compare(before, after):
+
+    d = dict()
+    d["Area1"] = 0
+    d["Area2"] = 0
+    d["Area3"] = 0
+    d["Area4"] = 0
+
+    for i in range(len(before)):
+        for j in range(len(before[0])):
+
+            cell_before = sum(before[i][j])
+            cell_after = sum(after[i][j])
+
+            if i <= 239:
+                if j <= 319:
+                    #Area1
+                    if cell_before - cell_after >= 150:
+                        d["Area1"] += 1
+                else:
+                    #Area3
+                    if cell_before - cell_after >= 150:
+                        d["Area3"] += 1
+            else:
+                if j <= 319:
+                    #Area2
+                    if cell_before - cell_after >= 150:
+                        d["Area2"] += 1
+                else:
+                    #Area4
+                    if cell_before - cell_after >= 150:
+                        d["Area4"] += 1
+    
+    lst = list(d.values())
+    result = [False] * 4
+    for i in range(len(lst)):
+        if lst[i] >= 15000:
+            result[i] = True
+    return result
 
 def main():
-    image_before = take_photo()
-    image_after = take_photo()
+    Stop = 0
+    while True:
+        if Stop == 2:
+            break
+        image_1 = take_photo()
 
-    processed_before = process_image(image_before)
-    processed_after = process_image(image_after)
-    print(processed_before)
-    print(processed_after)
-    arr_before = list(processed_before.values())
-    arr_after = list(processed_after.values())
+        processed_1 = process_image(image_1)
 
-    result = detect_difference(arr_before, arr_after)
-    print(result)
+        print(processed_1)
+
+        arr_1 = list(processed_1.values())
+
+        image_1_black = detect_difference_one(arr_1)
+
+        print("Image 1: " + image_1_black)
+
+        Stop+=1
+        time.sleep(1)
+
+        
+    # image_2 = take_photo()
+
+    # processed_2 = process_image(image_2)
+
+    # print(processed_2)
+
+    # arr_2 = list(processed_2.values())
+
+    # image_2_black = detect_difference_one(arr_2)
+
+    # print("Image 1: " + image_1_black)
+
     
 
 if __name__ == '__main__':
